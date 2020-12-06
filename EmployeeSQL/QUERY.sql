@@ -52,4 +52,29 @@ INNER Join "Homework".dept_emp as de
 on e.emp_no= de.emp_no
 INNER JOIN "Homework".departments as d
 on d.dept_no = de.dept_no;
---5.
+--5. list first,last name and sex for employees who first name is "hercules" and last begins with b
+select e.first_name, e.last_name, e.sex 
+from "Homework".employees as e 
+where e.first_name = 'Hercules' and e.last_name LIKE'B%';
+--6. list all employees in sales dept: including emp no, last and first name and dept name
+--sales dept_no=d006
+select e.emp_no, e.last_name, e.first_name, d.dept_name
+from "Homework".employees as e
+INNER Join "Homework".dept_emp as de 
+on e.emp_no= de.emp_no
+INNER JOIN "Homework".departments as d
+on d.dept_no = de.dept_no 
+where d.dept_no = 'd007';
+--7 list all in sales and dev dept including emp no, first and last name and dept name
+select e.emp_no, e.last_name, e.first_name, d.dept_name
+from "Homework".employees as e
+INNER Join "Homework".dept_emp as de 
+on e.emp_no= de.emp_no
+INNER JOIN "Homework".departments as d
+on d.dept_no = de.dept_no 
+where d.dept_no = 'd007' or d.dept_no = 'd005';
+--8 in desc order, list freq count of employee last name (how many employee share last name)
+SELECT COUNT(e.last_name), e.last_name
+FROM "Homework".employees as e
+GROUP BY e.last_name
+ORDER BY e.last_name;
